@@ -1,30 +1,25 @@
-screen -t mongo
-stuff "sudo mongod^M"
-screen -t prost_video
-stuff "cd ~/workspace/prost_video/^M"
-stuff "rails s^M"
-screen -t schumi_video 
-stuff "cd ~/workspace/schumi_video/^M"
-stuff "rails s -p 3001^M"
-screen -t octoshape
-stuff "cd ~/Downloads/octoshape/^M"
-stuff "./OctoshapeClient^M"
-screen -t dummy
-screen -t editor
-select 0
+#screen -t mongo
+#stuff "sudo mongod^M"
+#screen -t prost_video
+#stuff "cd ~/workspace/prost_video/^M"
+#stuff "rails s^M"
+#screen -t schumi_video 
+#stuff "cd ~/workspace/schumi_video/^M"
+#stuff "rails s -p 3001^M"
+#screen -t
+#select 0
 
 shell bash
-shelltitle ''
+shelltitle 'bash'
 shell -$SHELL
 vbell off
 defscrollback 5000
 startup_message off
-escape ^Bb
 attrcolor b ".I"    # allow bold colors - necessary for some reason
 defbce on    # use current bg color for erased chars
-hardstatus alwayslastline
-hardstatus string '%{= kW}%-Lw%{= KW}%50>%{+b}%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+#hardstatus alwayslastline
+#hardstatus string '%{= kW}%-Lw%{= KW}%50>%{+b}%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
 
 bind ^r source "${HOME}/.screenrc"
-bindkey ^[[1;3D prev 
-bindkey ^[[1;3C next 
+#bindkey ^[[1;3D prev 
+#bindkey ^[[1;3C next 
