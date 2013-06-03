@@ -146,3 +146,5 @@ work_completition(){
 
 complete -F work_completition go
 
+export EDITOR=vim
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

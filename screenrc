@@ -17,7 +17,7 @@ defscrollback 5000
 startup_message off
 attrcolor b ".I"    # allow bold colors - necessary for some reason
 defbce on    # use current bg color for erased chars
-#hardstatus alwayslastline
+hardstatus alwayslastline "%n %t"
 #hardstatus string '%{= kW}%-Lw%{= KW}%50>%{+b}%n%f* %t%{= kW}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
 
 bind ^r source "${HOME}/.screenrc"

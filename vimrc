@@ -1,4 +1,4 @@
-set noeb vb t_vb=
+syntax on
 set hlsearch
 set smartcase
 set ic
@@ -8,8 +8,18 @@ set autoread
 set nobackup
 set nowb
 set noswapfile
-set winminheight=0
 set tabstop=4
 set shiftwidth=4
-set bg=dark
+set winminheight=0
 set t_Co=256
+set laststatus=2
+colorscheme caires
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
