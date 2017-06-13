@@ -21,9 +21,7 @@
 ;; Packages
 (use-package protobuf-mode :ensure t :init)
 (use-package go-mode :ensure t :init)
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
+(use-package flycheck :ensure t)
 
 (use-package base16-theme :ensure t :init (load-theme 'base16-grayscale-dark :no-confirm))
 
@@ -39,6 +37,15 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-w" . mc/mark-all-like-this))
   )
+(use-package ido-vertical-mode
+  :ensure t
+  :init
+  (ido-mode 1)
+  (ido-vertical-mode 1)
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+  )
+
+
 
 ;; Golang
 (setenv "GOPATH" "/Users/caires/go/work")
@@ -56,11 +63,11 @@
   (local-set-key (kbd "M-*") 'pop-tag-mark)
 )
 (add-hook 'go-mode-hook 'my-go-mode-hook)
-(add-to-list 'load-path "~/go/work/src/github.com/dougm/goflymake")
-(require 'go-flymake)
+;;(add-to-list 'load-path "~/go/work/src/github.com/dougm/goflymake")
+;; (require 'go-flymake)
 
-(add-to-list 'load-path "~/go/work/gocode/src/github.com/dougm/goflymake")
-(require 'go-flycheck)
+;; (add-to-list 'load-path "~/go/work/gocode/src/github.com/dougm/goflymake")
+;; (require 'go-flycheck)
 
 ;;org-mode
 (setq org-src-fontify-natively t)
@@ -71,10 +78,8 @@
 
 ;; Remapping, buffers, etc...
 ;; change alt to esc
-(setq mac-option-key-is-meta nil)
-(setq mac-command-key-is-meta t)
-(setq mac-command-modifier 'meta)
-(setq mac-option-modifier nil)
+(setq mac-option-key-is-meta t)
+(setq mac-right-option-modifier nil)
 ;; clock
 (display-time)
 
@@ -85,25 +90,14 @@
   (append-next-kill) 
   (copy-region-as-kill (mark) (point))
   )
-(define-key global-map "\ef" 'find-file)
-(define-key global-map "\eF" 'find-file-other-window)
-(global-set-key (read-kbd-macro "\eb")  'ido-switch-buffer)
-(global-set-key (read-kbd-macro "\eB")  'ido-switch-buffer-other-window)
-(define-key global-map "\ea" 'yank)
-(define-key global-map "\ez" 'kill-region)
-(define-key global-map "\en" 'next-error)
-(define-key global-map "\eN" 'previous-error)
-(define-key global-map "\eg" 'goto-line)
-(define-key global-map "\eq" 'append-as-kill)
 
-(define-key global-map "\e[" 'start-kbd-macro)
-(define-key global-map "\e]" 'end-kbd-macro)
-(define-key global-map "\e'" 'call-last-kbd-macro)
+(global-set-key "\C-w" 'backward-kill-word)
+(global-set-key "\C-x\C-k" 'kill-region)
+(global-set-key "\C-c\C-k" 'kill-region)
 
-; Buffers
-(define-key global-map "\er" 'revert-buffer)
-(define-key global-map "\ek" 'kill-this-buffer)
-(define-key global-map "\es" 'save-buffer)
+;; autocompletion
+(global-set-key (kbd "M-/") 'hippie-expand)
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-file-name-partially try-complete-file-name try-expand-all-abbrevs try-expand-list try-expand-line try-complete-lisp-symbol-partially try-complete-lisp-symbol))
 
 (setq undo-limit 20000000)
 (setq undo-strong-limit 40000000)
