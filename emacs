@@ -1,27 +1,20 @@
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("elpy" . "https://jorgenschaefer.github.io/packages/"))
-
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-
-(package-initialize) ;; You might already have this line
-(if (not (package-installed-p 'use-package))
-    (progn
-      (package-refresh-contents)
-      (package-install 'use-package)))
+(push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives)
+(push '("melpa" . "http://melpa.milkbox.net/packages/") package-archives)
+(push '("org" . "http://orgmode.org/elpa/") package-archives)
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 (require 'use-package)
 
-(unless package-archive-contents
-  (package-refresh-contents))
+(setq use-package-always-ensure t)
 
 ;; Packages
 (use-package protobuf-mode :ensure t :init)
 (use-package go-mode :ensure t :init)
 (use-package flycheck :ensure t)
+(use-package yaml-mode :ensure t)
 
 (use-package base16-theme :ensure t :init (load-theme 'base16-grayscale-dark :no-confirm))
 
@@ -42,10 +35,8 @@
   :init
   (ido-mode 1)
   (ido-vertical-mode 1)
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+  (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
   )
-
-
 
 ;; Golang
 (setenv "GOPATH" "/Users/caires/go/work")
@@ -94,6 +85,7 @@
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
+(global-set-key "\C-x\k" 'kill-this-buffer)
 
 ;; autocompletion
 (global-set-key (kbd "M-/") 'hippie-expand)
@@ -112,7 +104,7 @@
 (setq inhibit-splash-screen t)
 (delete-selection-mode 1)
 (global-set-key (kbd "C-x g") 'magit-status)
-
+(setq tramp-default-method "ssh")
 
 ;; Font (Fira code) <3
 (when (window-system)
@@ -162,3 +154,104 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'upcase-region 'disabled nil)
+
+(require 'org)
+
+(defvar org-s5-theme "default")
+
+(defvar org-s5-ui-dir "ui")
+
+(defvar org-s5-title-string-fmt "<h1>%author - %title</h1>"
+  "Format template to specify title string.  Completed using `org-fill-template'.
+Optional keys include %author, %title and %date.")
+
+(defvar org-s5-title-page-fmt (mapconcat #'identity
+                                         '("<div class=\"slide\">"
+                                           "<h1>%title</h1>"
+                                           "<h1>%author</h1>"
+                                           "<h1>%date</h1>"
+                                           "</div>")
+                                         "\n")
+  "Format template to specify title page.  Completed using `org-fill-template'.
+Optional keys include %author, %title and %date.")
+
+(defun org-export-format-drawer-s5 (name content)
+  (if (string-equal name "NOTES")
+      (concat "\n#+BEGIN_HTML\n<div class=\"notes\">\n#+END_HTML\n" content "\n#+BEGIN_HTML\n</div\n#+END_HTML\n")
+    (org-export-format-drawer name content)))
+
+(defun org-export-as-s5
+  (arg &optional ext-plist to-buffer body-only pub-dir)
+  "Wrap `org-export-as-html' in setting for S5 export."
+  (interactive "P")
+  (add-to-list 'org-drawers "NOTES")
+  (flet ((join (lst) (mapconcat #'identity lst "\n"))
+         (sheet (href media id)
+                (org-fill-template
+                 (concat "<link rel=\"stylesheet\" href=\""
+                         org-s5-ui-dir
+                         "/%href\""
+                         " type=\"text/css\" media=\"%media\" id=\"%id\" />")
+                 `(("href" . ,href)
+                   ("media" . ,media)
+                   ("id" . ,id)))))
+    (let ((org-export-html-style-extra
+           (join `("<!-- configuration parameters -->"
+                   "<meta name=\"defaultView\" content=\"slideshow\" />"
+                   "<meta name=\"controlVis\" content=\"hidden\" />"
+                   "<!-- style sheet links -->"
+                   ,(sheet (concat org-s5-theme "/slides.css")
+                           "projection" "slideProj")
+                   ,(sheet "default/outline.css" "screen" "outlineStyle")
+                   ,(sheet "default/print.css" "print" "slidePrint")
+                   ,(sheet "default/opera.css" "projection" "operaFix")
+                   "<!-- S5 JS -->"
+                   ,(concat "<script src=\"" org-s5-ui-dir
+                            "/default/slides.js\" "
+                            "type=\"text/javascript\"></script>"))))
+          (org-export-html-toplevel-hlevel 1)
+          (org-export-html-postamble nil)
+          (org-export-html-auto-postamble nil)
+          (org-export-with-drawers (list "NOTES"))
+          (org-export-format-drawer-function 'org-export-format-drawer-s5)
+          (org-export-preprocess-hook
+           (list
+            (lambda ()
+              (let ((class "slide"))
+                (org-map-entries
+                 (lambda ()
+                   (save-excursion
+                     (org-back-to-heading t)
+                     (when (= (car (org-heading-components)) 1)
+                       (put-text-property (point-at-bol) (point-at-eol)
+                                          'html-container-class class)))))))))
+          (org-export-html-final-hook
+           (list
+            (lambda ()
+              (save-excursion
+                (replace-regexp
+                 (regexp-quote "<div id=\"content\">")
+                 (let ((info `(("author" . ,author)
+                               ("title"  . ,title)
+                               ("date"   . ,(substring date 0 10)))))
+                   (join `("<div class=\"layout\">"
+                           "<div id=\"controls\"><!-- no edit --></div>"
+                           "<div id=\"currentSlide\"><!-- no edit --></div>"
+                           "<div id=\"header\"></div>"
+                           "<div id=\"footer\">"
+                           ,(org-fill-template org-s5-title-string-fmt info)
+                           "</div>"
+                           "</div>"
+                           ""
+                           "<div class=\"presentation\">"
+                           ,(org-fill-template org-s5-title-page-fmt info)))))))
+            (lambda ()
+              (save-excursion
+                (replace-regexp
+                 (regexp-quote "<div id=\"table-of-contents\">")
+                 "<div id=\"table-of-contents\" class=\"slide\">"))))))
+      (org-export-as-html arg ext-plist to-buffer body-only pub-dir))))
+
+(provide 'org-export-as-s5)
+(put 'downcase-region 'disabled nil)
