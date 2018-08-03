@@ -23,12 +23,8 @@ set clipboard=unnamedplus,unnamed
 
 let mapleader = " "
 
-imap ,. <Esc>
-vmap ,. <Esc>
-
 nmap <leader>q :q<cr>
 nmap <leader>v :vs<cr>
-nmap <leader>s :split<cr>
 nmap <leader><Up> <c-w>k<cr>
 nmap <leader><Down> <c-w>j<cr>
 nmap <leader><Right> <c-w>l<cr>
@@ -38,41 +34,43 @@ nmap === :action ReformatCode<CR>
 
 nmap <leader>p "+p
 
-nmap <leader>e :action GotoDeclaration<cr>
 nmap <leader>b :action Back<cr>
 nmap <leader>f :action Forward<cr>
-
-nmap <leader>t :action GotoFile<cr>
-nmap <leader>c :action GotoClass<cr>
-nmap <leader>ns :action GotoSymbol<cr>
+nmap <leader>e :action GotoDeclaration<cr>
+nmap <leader>ga :action GotoAction<cr>
+nmap <leader>gt :action GotoFile<cr>
+nmap <leader>gc :action GotoClass<cr>
+nmap <leader>gs :action GotoSymbol<cr>
+nmap <leader>rc :action RunConfiguration<cr>
+nmap <leader>si :action ShowIntentionActions<cr>
 
 " cursive
 nmap <leader>kJ :action :cursive.actions.paredit/join<CR>
 nmap <leader>kO :action :cursive.actions.paredit/split<CR>
 nmap <leader>kX :action :cursive.actions.paredit/splice<CR>
 nmap <leader>kI :action :cursive.actions.paredit/raise<CR>
-nnoremap <leader>kB :action :cursive.actions.paredit/barf-backwards<CR>
-nnoremap <leader>kb :action :cursive.actions.paredit/barf-forwards<CR>
-nnoremap <leader>kdx :action :cursive.actions.paredit/kill-sexp<CR>
-nnoremap <leader>kS :action :cursive.actions.paredit/slurp-backwards<CR>
-nnoremap <leader>ks :action :cursive.actions.paredit/slurp-forwards<CR>
-nnoremap <leader>ke :action :cursive.actions.paredit/splice-killing-backwards<CR>
-nnoremap <leader>kE :action :cursive.actions.paredit/splice-killing-forwards<CR>
-nnoremap <leader>mrtf :action :cursive.actions.paredit/thread-form<CR>
-nnoremap <C-c><C-c> :action :cursive.repl.actions/interrupt <CR>
-nnoremap <leader>msp :action :cursive.repl.actions/jump-to-output<CR>
-nnoremap <leader>mss :action :cursive.repl.actions/jump-to-repl<CR>
-nnoremap <leader>msb :action :cursive.repl.actions/clear-repl<CR>:action :cursive.repl.actions/load-file<CR>
-nnoremap <leader>msx :action :cursive.repl.actions/clear-repl<CR>
-nnoremap <leader>mem :action :cursive.repl.actions/macroexpansion<CR>
-nnoremap <leader>mse :action :cursive.repl.actions/run-last-sexp<CR>
-nnoremap <leader>msn :action :cursive.repl.actions/run-top-sexp<CR>
-nnoremap <leader>msz :action :cursive.repl.actions/sync-files<CR>
-nnoremap <leader>mtr :action :cursive.testing.actions/rerun-last-test <CR>
-nnoremap <leader>mta :action :cursive.testing.actions/run-ns-tests <CR>
-nnoremap <leader>mtt :action :cursive.testing.actions/run-single-test<CR>
-nnoremap <C-<Down>> :action :cursive.repl.actions/next-history-item<CR>
-nnoremap <C-<Up>> :action :cursive.repl.actions/prev-history-item<CR>
+nmap <leader>kB :action :cursive.actions.paredit/barf-backwards<CR>
+nmap <leader>kb :action :cursive.actions.paredit/barf-forwards<CR>
+nmap <leader>kdx :action :cursive.actions.paredit/kill-sexp<CR>
+nmap <leader>kS :action :cursive.actions.paredit/slurp-backwards<CR>
+nmap <leader>ks :action :cursive.actions.paredit/slurp-forwards<CR>
+nmap <leader>ke :action :cursive.actions.paredit/splice-killing-backwards<CR>
+nmap <leader>kE :action :cursive.actions.paredit/splice-killing-forwards<CR>
+nmap <leader>mrtf :action :cursive.actions.paredit/thread-form<CR>
+nmap <C-c><C-c> :action :cursive.repl.actions/interrupt <CR>
+nmap <leader>msp :action :cursive.repl.actions/jump-to-output<CR>
+nmap <leader>mss :action :cursive.repl.actions/jump-to-repl<CR>
+nmap <leader>msb :action :cursive.repl.actions/clear-repl<CR>:action :cursive.repl.actions/load-file<CR>
+nmap <leader>msx :action :cursive.repl.actions/clear-repl<CR>
+nmap <leader>mem :action :cursive.repl.actions/macroexpansion<CR>
+nmap <leader>mse :action :cursive.repl.actions/run-last-sexp<CR>
+nmap <leader>msn :action :cursive.repl.actions/run-top-sexp<CR>
+nmap <leader>msz :action :cursive.repl.actions/sync-files<CR>
+nmap <leader>mtr :action :cursive.testing.actions/rerun-last-test <CR>
+nmap <leader>mta :action :cursive.testing.actions/run-ns-tests <CR>
+nmap <leader>mtt :action :cursive.testing.actions/run-single-test<CR>
+nmap <C-<Down>> :action :cursive.repl.actions/next-history-item<CR>
+nmap <C-<Up>> :action :cursive.repl.actions/prev-history-item<CR>
 nmap <leader>( :action :cursive.actions.paredit/wrap-paren<CR>
 nmap <leader>[ :action :cursive.actions.paredit/wrap-square<CR>
 nmap <leader>{ :action :cursive.actions.paredit/wrap-curly<CR>
