@@ -1,5 +1,5 @@
 #!/bin/bash
 
-rofi -combi-modi window,drun -show run \
-  -hide-scrollbar \
-  -matching fuzzy
+rofi -show run \
+     -modi run,window \
+     -markup -show-icons -sidebar-mode -terminal st
