@@ -20,3 +20,8 @@ URxvt.perl-ext-common: default,matcher,keyboard-select,resize-font
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
+
+URxvt.keysym.M-Up:     \033[1;5A
+URxvt.keysym.M-Down:   \033[1;5B
+URxvt.keysym.M-Left:   \033[1;5D
+URxvt.keysym.M-Right:  \033[1;5C
