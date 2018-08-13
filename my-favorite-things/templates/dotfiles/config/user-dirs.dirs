@@ -1,0 +1,8 @@
+XDG_DESKTOP_DIR="/home/caires/"
+XDG_DOWNLOAD_DIR="/home/caires/downloads"
+XDG_TEMPLATES_DIR="/home/caires/"
+XDG_PUBLICSHARE_DIR="/home/caires/shared/"
+XDG_DOCUMENTS_DIR="/home/caires/documents"
+XDG_MUSIC_DIR="/home/caires/music"
+XDG_PICTURES_DIR="/home/caires/pictures"
+XDG_VIDEOS_DIR="/home/caires/videos"

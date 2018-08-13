@@ -1,0 +1,6 @@
+tmp*
+.AURINFO
+.SRCINFO
+*.pkg.tar.xz
+2bwm-pkgbuild/2bwm-git/*
+*~
