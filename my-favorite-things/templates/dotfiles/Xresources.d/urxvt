@@ -1,8 +1,9 @@
-URxvt.font: xft:Hack:style=regular:pixelsize=14:antialias=false
-URxvt.boldFont: xft:Hack:style=bold:pixelsize=14:antialias=false
-URxvt.italicFont: xft:Hack:style=oblique:pixelsize=14:antialias=false
+/* fonts */
+URxvt.font:         xft:Iosevka:size=18,xft:Symbola
+URxvt.boldFont:     xft:Iosevka:size=18:weight=bold,xft:Symbola
+URxvt.italicFont:   xft:Iosevku:size=18:slant=italic,xft:Symbola
 
-! URxvt.letterSpace: -1
+URxvt.letterSpace: 2
 URxvt.lineSpace: 2
 
 URxvt*cursorUnderline: true
@@ -25,3 +26,4 @@ URxvt.keysym.M-Up:     \033[1;5A
 URxvt.keysym.M-Down:   \033[1;5B
 URxvt.keysym.M-Left:   \033[1;5D
 URxvt.keysym.M-Right:  \033[1;5C
+

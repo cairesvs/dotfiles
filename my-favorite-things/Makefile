@@ -213,6 +213,7 @@ core/fonts:
 		ttf-fira-sans \
 		ttf-opensans \
 		ttf-twemoji-color \
+		nerd-fonts-complete \
 		xorg-fonts-alias
 
 core/aur-helper: core/aur-helper/cower
