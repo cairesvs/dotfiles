@@ -83,6 +83,10 @@ user/i3: ~/.xinitrc \
 # Applications
 #
 
+application/pavucontrol:
+	sudo pacman -S --noconfirm --needed \
+		pavucontrol
+
 applications/i3wm: user/i3
 	sudo pacman -S --noconfirm --needed \
 		i3-wm \
