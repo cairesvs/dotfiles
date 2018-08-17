@@ -24,6 +24,7 @@ dotfiles = \
 	~/.compton.conf \
 	~/.ctags \
 	~/.bashrc \
+	~/.vimrc \
 	~/.bash_profile \
 	~/.Xresources \
 	~/.Xresources.d/colorscheme \
@@ -35,7 +36,6 @@ user/simple: $(dotfiles)
 	echo "dotfiles <3"
 
 user/desktop: $(dotfiles) \
-	applications/dunst \
 	applications/i3wm \
 	applications/launcher \
 	applications/locker \
@@ -78,18 +78,30 @@ user/i3: ~/.xinitrc \
 	 ~/.config/i3status/config
 	echo "Conf for i3"
 
-
+user/company: applications/dev-env
+	sudo pacman -S --noconfirm --needed zsh \
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Applications
 #
 
-application/pavucontrol:
+applications/fzf:
+	sudo pacman -S --noconfirm --needed \
+	fzf
+
+applications/dev-env:
+	sudo pacman -S --noconfirm --needed \
+		jq \
+		aws-cli \
+		intellij-idea-community-edition
+
+applications/pavucontrol:
 	sudo pacman -S --noconfirm --needed \
 		pavucontrol
 
 applications/i3wm: user/i3
 	sudo pacman -S --noconfirm --needed \
-		i3-wm \
+		i3-gaps\
 		i3lock \
 		i3status \
 
@@ -103,36 +115,6 @@ applications/dunst: ~/.config/dunst/dunstrc
 		dunst-git
 	systemctl --user enable dunst.service
 	systemctl --user start dunst.service
-
-applications/redshift: ~/.config/redshift.conf
-	pacaur -S --noconfirm --needed \
-		redshift
-
-applications/nextcloud:
-	pacaur -S --noconfirm --needed \
-		gnome-keyring \
-		nextcloud-client
-
-config_path = ~/.vim
-applications/vim: ~/.vimrc
-	sudo pacman -S --noconfirm --needed \
-		ctags \
-		gvim \
-		vim-spell-en
-	rm -rf $(config_path)/pack
-	mkdir -p $(config_path)/backups $(config_path)/pack/plugins/start
-	cd $(config_path)/pack/plugins/start \
-		&& git clone https://github.com/chriskempson/base16-vim.git \
-		&& git clone https://github.com/derekwyatt/vim-scala.git \
-		&& git clone https://github.com/fatih/vim-go.git \
-		&& git clone https://github.com/tpope/vim-fugitive.git \
-		&& git clone https://github.com/tpope/vim-markdown.git \
-		&& git clone https://github.com/tpope/vim-repeat.git \
-		&& git clone https://github.com/tpope/vim-rsi.git \
-		&& git clone https://github.com/tpope/vim-sensible.git \
-		&& git clone https://github.com/tpope/vim-sleuth.git \
-		&& git clone https://github.com/tpope/vim-surround.git \
-		&& git clone https://github.com/tpope/vim-vinegar.git
 
 applications/mpd: ~/.config/mpd/mpd.conf ~/.config/systemd/user/mpd.service
 	sudo pacman -S --noconfirm --needed mpd mpc
@@ -195,7 +177,7 @@ core/utils:
 	sudo pacman -S --noconfirm \
 		bash-completion \
 		ctags \
-		git-core \
+		git   \
 		openssh  \
 		unzip \
 		xclip \

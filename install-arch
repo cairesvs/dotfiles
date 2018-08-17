@@ -1,0 +1,85 @@
+#!/bin/env bash
+
+PURPLE="\033[1;30;45m install \033[1;35;49m "
+RESET="\033[0m"
+
+USRNAME=${USRNAME:-caires}
+HOSTNAME=${HOSTNAME:-caires}
+HOME_DIR=/home/$USRNAME
+
+echo -e "${PURPLE}Brazil mirrors${RESET}"
+grep -A 2 Brazil /etc/pacman.d/mirrorlist > mirrorlist.br
+cp mirrorlist.br /etc/pacman.d/mirrorlist
+
+set -e
+echo -e "${PURPLE}Formatting disks${RESET}"
+
+CREATE_EFI_SYSTEM="g\nn\n\n\n+512M\nt\n1\n"
+CREATE_LINUX_SWAP="n\n\n\n+4G\nt\n\n20\n"
+CREATE_LINUX_SYSTEM="n\n\n\n\nw\n"
+
+if [ -z "$SKIP_DISK" ]; then
+  if [ -z "$USE_MBR" ]; then
+    echo -e "${CREATE_EFI_SYSTEM}${CREATE_LINUX_SWAP}${CREATE_LINUX_SYSTEM}" | fdisk /dev/nvme0n1
+  else
+    echo -e "o\nn\np\n\n\n+512M\nn\np\n\n\n\nw\n" | fdisk /dev/nvme0n1
+  fi
+
+  echo -e "${PURPLE}Setting up cryptography${RESET}"
+  cryptsetup -y -v luksFormat /dev/nvme0n1p3
+  cryptsetup open /dev/nvme0n1p3 cryptroot
+  mkfs.ext4 /dev/mapper/cryptroot
+  mount /dev/mapper/cryptroot /mnt
+
+  echo -e "${PURPLE}Setting up boot directory${RESET}"
+  mkfs.fat -F32 /dev/nvme0n1p1
+  mkdir /mnt/boot
+  mount /dev/nvme0n1p1 /mnt/boot
+
+  export INSTALL_DEVICE_UUID=$(blkid /dev/nvme0n1p3 | awk ' { print $2 } ' | sed s/\"//g)
+  echo $INSTALL_DEVICE_UUID > ./nvm-device-uuid
+  echo -e "${PURPLE}Device UUID${RESET} Your device UUID is stored at ./nvm-device-uuid"
+fi
+
+echo -e "${PURPLE}Bootstrapping packages${RESET}"
+pacstrap /mnt base base-devel git wpa_supplicant iw dialog wpa_actiond
+cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
+
+echo -e "${PURPLE}Gen fstab${RESET}"
+genfstab -U /mnt >> /mnt/etc/fstab
+
+echo -e "${PURPLE}Clock stuff${RESET}"
+arch-chroot /mnt rm -f /etc/localtime
+arch-chroot /mnt ln -s /usr/share/zoneinfo/Brazil/East /etc/localtime
+arch-chroot /mnt hwclock --systohc --utc
+
+echo -e "${PURPLE}Locale stuff${RESET}"
+sed -i s/#en_US\.UTF-8/en_US.UTF-8/ /mnt/etc/locale.gen
+echo LANG=en_US.UTF-8 > /mnt/etc/locale.conf
+echo $HOSTNAME > /mnt/etc/hostname
+
+echo -e "${PURPLE}Making vmlinuz${RESET}"
+sed -i "/^HOOKS/s/filesystems/encrypt filesystems/" /mnt/etc/mkinitcpio.conf
+arch-chroot /mnt mkinitcpio -p linux
+
+echo -e "${PURPLE}Set root password${RESET}"
+arch-chroot /mnt passwd
+
+echo -e "${PURPLE}Setting up $USRNAME${RESET}"
+arch-chroot /mnt useradd -m -g users -G wheel,storage,power -s /bin/bash $USRNAME
+
+echo -e "${PURPLE}Set $USRNAME password${RESET}"
+arch-chroot /mnt passwd $USRNAME
+
+if [ -z "$USE_MBR" ]; then
+    echo -e "${PURPLE}Configuring bootloader (bootctl)${RESET}"
+    arch-chroot /mnt bootctl install
+    arch-chroot /mnt cp -f /usr/share/systemd/bootctl/loader.conf /boot/loader/loader.conf
+    echo "editor 0" >> /mnt/boot/loader/loader.conf
+    arch-chroot /mnt bash -c "echo -e \"title Arch Linux\nlinux /vmlinuz-linux\ninitrd /initramfs-linux.img\noptions cryptdevice=${INSTALL_DEVICE_UUID}:cryptroot root=/dev/mapper/cryptroot quiet rw\" > /boot/loader/entries/arch.conf"
+else
+    echo -e "${PURPLE}Bootloader not configured${RESET} Given it's a MBR setup, you'll have to configure the bootloader manually."
+fi
+
+echo -e "${PURPLE}Done!${RESET} Instalation finished!"
+set +e
