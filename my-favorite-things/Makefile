@@ -84,6 +84,10 @@ user/company: applications/dev-env
 # Applications
 #
 
+applications/vscode:
+	pacaur -S --noconfirm --needed \
+		visual-studio-code-bin 
+
 applications/polybar:
 	pacaur -S --noconfirm --needed \
 		polybar
@@ -302,6 +306,7 @@ device/x200: /etc/thinkfan.conf
 	sudo cp templates/etc/$* $@
 
 /etc/X11/xorg.conf.d/%.conf: templates/etc/X11/xorg.conf.d/*
+	sudo mkdir -vp /etc/X11/xorg.conf.d
 	sudo cp templates/etc/X11/xorg.conf.d/$*.conf $@
 
 ~/.%: templates/dotfiles/*
