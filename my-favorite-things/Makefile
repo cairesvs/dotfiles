@@ -49,10 +49,6 @@ user/desktop: $(dotfiles) \
 		hsetroot \
 		sxiv
 
-user/environments/scala:
-	sudo pacman -S --noconfirm --needed \
-		sbt
-
 user/environments/golang: ~/.env-golang
 	sudo pacman -S --noconfirm --needed \
 		go \
@@ -60,11 +56,6 @@ user/environments/golang: ~/.env-golang
 	source ~/.env-golang
 	vim +GoInstallBinaries +qall
 	curl https://glide.sh/get | sh
-
-user/environments/js:
-	sudo pacman -S --noconfirm --needed \
-		nodejs-lts-boron \
-		npm
 
 user/environments/rust: ~/.env-rust
 	curl https://sh.rustup.rs -sSf \
@@ -75,11 +66,16 @@ user/environments/rust: ~/.env-rust
 
 user/i3: applications/polybar \
 	 applications/feh \
+	 user/wallpaper \
 	 ~/.xinitrc \
 	 ~/.config/i3/config \
 	 ~/.bin/polybar \
 	 ~/.config/polybar/config
 	echo "Conf for i3"
+
+user/wallpaper:
+	mkdir -vp ~/.my-favorite-things/ \
+		&& cp wallpapers/wallpaper.jpeg ~/.my-favorite-things/wallpaper.jpeg
 
 user/company: applications/dev-env
 	sudo pacman -S --noconfirm --needed zsh \
