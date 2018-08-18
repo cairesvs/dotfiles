@@ -7,6 +7,7 @@ plugins=(
   osx
 )
 
+source ~/.config/base16-shell/scripts/base16-classic-light.sh
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR=vim

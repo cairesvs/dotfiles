@@ -44,6 +44,7 @@ exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY
 exec --no-startup-id gnome-keyring-daemon -d -r
 
 exec_always --no-startup-id ~/.bin/random-gradient-wallpaper
+exec_always --no-startup-id ~/.bin/polybar.sh &
 exec_always --no-startup-id $(pkill compton; exit 0) && compton
 exec_always --no-startup-id xrdb -load ~/.Xresources
 
@@ -137,23 +138,3 @@ client.focused $base0D $base0D $base06 $base0D
 client.focused_inactive $base02 $base02 $base0D $base01
 client.unfocused $base01 $base01 $base05 $base01
 client.urgent $base02 $base08 $base07 $base08
-
-bar {
-  mode dock
-  output primary
-  position bottom
-  status_command i3status
-  tray_output none
-  font pango:Hack 8
-
-  colors {
-    separator $base03
-    background $base01
-    statusline $base05
-
-    focused_workspace $base0B $base0F $base07
-    active_workspace $base01 $base01 $base04
-    inactive_workspace $base02 $base02 $base05
-    urgent_workspace $base08 $base08 $base07
-  }
-}

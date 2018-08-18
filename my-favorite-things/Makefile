@@ -4,7 +4,7 @@
 user-email = cairesvs@gmail,com
 user-name = caires
 user-nick = $(USER)
-colorscheme = base16-dark
+colorscheme = base16-light
 
 # Template parsing command
 macrocmd = m4 \
@@ -73,9 +73,12 @@ user/environments/rust: ~/.env-rust
 	rustup default nightly
 	rustup run nightly cargo install rustfmt-nightly
 
-user/i3: ~/.xinitrc \
+user/i3: applications/polybar \
+	 applications/feh \
+	 ~/.xinitrc \
 	 ~/.config/i3/config \
-	 ~/.config/i3status/config
+	 ~/.bin/polybar \
+	 ~/.config/polybar/config
 	echo "Conf for i3"
 
 user/company: applications/dev-env
@@ -84,6 +87,14 @@ user/company: applications/dev-env
 
 # Applications
 #
+
+applications/polybar:
+	pacaur -S --noconfirm --needed \
+		polybar
+
+applications/feh:
+	sudo pacman -S --noconfirm --needed \
+		feh
 
 applications/fzf:
 	sudo pacman -S --noconfirm --needed \
@@ -103,7 +114,6 @@ applications/i3wm: user/i3
 	sudo pacman -S --noconfirm --needed \
 		i3-gaps\
 		i3lock \
-		i3status \
 
 applications/launcher: ~/.bin/launcher \
 	~/.Xresources.d/rofi
