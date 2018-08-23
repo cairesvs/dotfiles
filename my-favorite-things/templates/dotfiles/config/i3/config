@@ -30,13 +30,16 @@ font pango: FontAwesome, Scientifica, Siji 12
 floating_modifier $mod
 hide_edge_borders both
 
-new_window pixel 0
+new_window pixel 5
 new_float pixel 0
 for_window [class=".*"] title_format "  %title"
 
 gaps inner 8
 gaps inner 8
 smart_gaps on
+
+assign [class="jetbrains-idea-ce"] 1
+for_window [class="jetbrains-idea-ce"] layout tabbed
 
 exec --no-startup-id xrandr --output eDP1 --primary
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
@@ -58,6 +61,11 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+bindsym $mod+o workspace next
+bindsym $mod+i workspace prev
+
+bindsym $mod+Tab exec perl /home/caires/.bin/i3_cycle_windows
 
 bindsym $mod+b split h
 bindsym $mod+v split v
@@ -133,10 +141,16 @@ mode "move workspace" {
 }
 bindsym $mod+Shift+w mode "move workspace"
 
-client.focused $base0D $base0D $base06 $base0D
-client.focused_inactive $base02 $base02 $base0D $base01
-client.unfocused $base01 $base01 $base05 $base01
-client.urgent $base02 $base08 $base07 $base08
+bindsym $mod+shift+Left move workspace to output left
+bindsym $mod+shift+Right move workspace to output right
+bindsym $mod+shift+Up move workspace to output up
+bindsym $mod+shift+Down move workspace to output down
+
+# class                  border  backgr. text    indicator child_border
+client.focused           #ff0000 #ff0000 $base06 #ff0000
+client.focused_inactive  #000000 #000000 $base0D #000000
+client.unfocused         #000000 #000000 $base0D #000000
+client.urgent            $base02 $base08 $base07 $base08
 
 bar {
   mode dock

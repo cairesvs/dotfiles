@@ -58,8 +58,6 @@ user/environments/golang: ~/.env-golang
 		go \
 		go-tools
 	source ~/.env-golang
-	vim +GoInstallBinaries +qall
-	curl https://glide.sh/get | sh
 
 user/environments/js:
 	sudo pacman -S --noconfirm --needed \
