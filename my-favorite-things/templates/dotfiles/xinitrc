@@ -1,2 +1,16 @@
 changecom(`"""')
-exec i3
+#!/bin/sh
+
+xsetroot -cursor_name left_ptr &
+xrdb -load ~/.Xresources
+
+urxvtd &
+
+pkill polybar
+polybar main &
+
+compton &
+dunst -config "$HOME"/.config/dunst/dunstrc &
+hsetroot -solid "#264d73"
+
+exec 2bwm

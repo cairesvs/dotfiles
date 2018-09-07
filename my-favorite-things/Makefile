@@ -4,7 +4,7 @@
 user-email = cairesvs@gmail,com
 user-name = caires
 user-nick = $(USER)
-colorscheme = base16-light
+colorscheme = base16-ocean-dark
 
 # Template parsing command
 macrocmd = m4 \
@@ -109,6 +109,9 @@ applications/dev-env:
 applications/pavucontrol:
 	sudo pacman -S --noconfirm --needed \
 		pavucontrol
+
+applications/2bwm:
+	cd 2bwm/ && make && sudo make install
 
 applications/i3wm: user/i3
 	sudo pacman -S --noconfirm --needed \

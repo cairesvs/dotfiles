@@ -6,16 +6,16 @@ URxvt.italicFont:   xft:Iosevku:size=12:slant=italic,xft:Symbola
 !URxvt.letterSpace: 2
 URxvt.lineSpace: 2
 
-URxvt*cursorUnderline: true
 URxvt*cursorBlink: false
 URxvt*cursorColor: #ab4642
 
-URxvt*borderless: true
-URxvt*saveLines: 20000
-URxvt*scrollBar: false
-URxvt.internalBorder: 24
-URxvt.geometry: 80x24
-URxvt.intensityStyles: false
+URxvt.scrollBar           : false
+URxvt.internalBorder      : 44
+URxvt.cursorUnderline     : false
+URxvt.geometry            : 70x35
+URxvt.thickness           : 5
+URxvt.titleBar            : false
+URxvt.intensityStyles     : false
 
 URxvt.perl-ext-common: default,matcher,keyboard-select,resize-font
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
