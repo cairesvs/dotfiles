@@ -1,0 +1,89 @@
+let mapleader = "\<Space>"
+
+call plug#begin('~/.local/share/nvim/plugged')
+" GUI enhancements
+Plug 'machakann/vim-highlightedyank'
+Plug 'chriskempson/base16-vim'
+
+" Fuzzy finder
+Plug 'airblade/vim-rooter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+" Base16
+let base16colorspace=256
+let g:base16_shell_path="~/.config/base16-shell/scripts/"
+
+if executable('rg')
+	set grepprg=rg\ --no-heading\ --vimgrep
+	set grepformat=%f:%l:%c:%m
+endif
+
+syntax on
+set hlsearch
+set smartcase
+set ic
+set incsearch
+set history=700
+set autoread
+set nobackup
+set nowb
+set noswapfile
+set tabstop=4
+set shiftwidth=4
+set winminheight=0
+set t_Co=256
+set laststatus=2
+set ruler
+set showmode
+" Colors
+set background=dark
+colorscheme base16-classic-dark
+hi Normal ctermbg=NONE
+
+" Open hotkeys
+map <C-p> :Files<CR>
+nmap <leader>; :Buffers<CR>
+
+" <leader>s for Rg search
+noremap <leader>s :Rg
+let g:fzf_layout = { 'down': '~20%' }
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Left and right can switch buffers
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
+
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
+
+" <leader>= reformats current tange
+nnoremap <leader>= :'<,'>RustFmtRange<cr>
+
+" Keymap for replacing up to next _ or -
+noremap <leader>m ct_
+noremap <leader>n ct-
+
+noremap <leader>p :read !xsel --clipboard --output<cr>
+noremap <leader>c :w !xsel -ib<cr><cr>
+
+au Filetype rust set colorcolumn=100
+
+" nvim
+if has('nvim')
+	runtime! plugin/python_setup.vim
+endif

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+xrdb -load ~/.Xresources
+
+urxvtd &
+
+dunst -config "$HOME"/.config/dunst/dunstrc &
+hsetroot -solid "#000000"
+
+~/.bin/status &
+
+exec dwm 2> ~/tmp/dwm.log
