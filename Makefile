@@ -125,6 +125,11 @@ applications/docker:
 		lxc
 	sudo gpasswd -a $(USER) docker
 
+applications/dwm: 
+	git clone https://git.suckless.org/dwm 
+	cp config.h dwm/config.h
+	cd dwm/ && sudo make clean install
+
 # Core
 #
 
