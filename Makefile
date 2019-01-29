@@ -4,7 +4,7 @@
 user-email = cairesvs@gmail,com
 user-name = caires
 user-nick = $(USER)
-colorscheme = colorschemes/base16-classic-dark
+colorscheme = colorschemes/base16-light
 
 # Template parsing command
 macrocmd = m4 \

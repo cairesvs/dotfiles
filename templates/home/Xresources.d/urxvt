@@ -17,7 +17,7 @@ URxvt.thickness           : 5
 URxvt.titleBar            : false
 URxvt.intensityStyles     : false
 
-URxvt.perl-ext-common: default,matcher,keyboard-select,resize-font
+URxvt.perl-ext-common: default,matcher,keyboard-select,resize-font,selection-to-clipboard
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
