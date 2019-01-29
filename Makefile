@@ -71,9 +71,17 @@ applications/vscode:
 	pacaur -S --noconfirm --needed \
 		visual-studio-code-bin 
 
+applications/polybar: ~/.config/polybar/config ~/.config/polybar/launch.sh
+	pacaur -S --noconfirm --needed \
+		polybar
+
 applications/feh:
 	sudo pacman -S --noconfirm --needed \
 		feh
+
+applications/firefox:
+	pacaur -S --noconfirm --needed \
+		firefox-nightly
 
 applications/fzf:
 	sudo pacman -S --noconfirm --needed \
