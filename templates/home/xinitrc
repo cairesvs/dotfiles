@@ -1,12 +1,11 @@
 #!/bin/sh
 
+setxkbmap -option compose:rctrl -layout 'us(mac)'
+
 xrdb -load ~/.Xresources
 
-urxvtd &
-
 dunst -config "$HOME"/.config/dunst/dunstrc &
-hsetroot -solid "#000000"
 
-~/.bin/status &
-
-exec dwm 2> ~/tmp/dwm.log
+# Start WM
+xsetroot -cursor_name left_ptr
+xmonad 2> .logs/xmonad.err > .logs/xmonad.log

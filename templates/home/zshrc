@@ -6,7 +6,7 @@ plugins=(
   dotenv
 )
 
-source ~/.config/base16-shell/scripts/base16-classic-dark.sh
+source ~/.config/base16-shell/scripts/base16-atelier-dune.sh
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR=vim

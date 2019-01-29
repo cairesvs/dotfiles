@@ -1,0 +1,10 @@
+!AltGr is Mode_switch
+keycode 108 = Mode_switch
+
+! Caps Lock is Control
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
+
+remove mod4 = Super_L
+add control = Super_L

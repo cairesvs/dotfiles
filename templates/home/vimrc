@@ -40,7 +40,7 @@ set ruler
 set showmode
 " Colors
 set background=dark
-colorscheme base16-classic-dark
+colorscheme base16-atelier-dune
 hi Normal ctermbg=NONE
 
 " Open hotkeys

@@ -26,7 +26,7 @@ dotfiles = \
 	~/.bash_profile \
 	~/.Xresources \
 	~/.Xresources.d/colorscheme \
-	~/.Xresources.d/urxvt \
+	~/.Xresources.d/rofi \
 	~/.zshrc
 
 user/simple: $(dotfiles)
@@ -35,8 +35,10 @@ user/simple: $(dotfiles)
 user/desktop: $(dotfiles) \
 	applications/locker \
 	applications/ranger \
-	applications/urxvt \
+	applications/alacritty \
+	applications/tmux \
 	applications/zathura \
+	applications/xmonad \
 	pacaur -S --noconfirm --needed \
 		compton \
 		gnome-keyring \
@@ -104,15 +106,11 @@ applications/zathura:
 		zathura \
 		zathura-pdf-mupdf
 
-applications/urxvt: ~/.Xresources.d/urxvt
-	if ! [ -d ~/.config/base16-shell ]; then git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell; fi
-	sudo pacman -S --noconfirm --needed \
-		rxvt-unicode \
-		urxvt-perls
-	mkdir -p ~/.urxvt/ext/
-	curl -SL -o ~/.urxvt/ext/keyboard-select "https://raw.githubusercontent.com/muennich/urxvt-perls/master/keyboard-select"
-	curl -SL -o ~/.urxvt/ext/resize-font "https://raw.githubusercontent.com/simmel/urxvt-resize-font/master/resize-font"
-	xrdb -load ~/.Xresources
+applications/alacritty: ~/.config/alacritty/alacritty.yml
+	sudo pacman -S --noconfirm --needed alacritty
+
+applications/tmux: ~/.tmux.conf
+	sudo pacman -S --noconfirm --needed tmux
 
 applications/locker: 
 	sudo pacman -S --noconfirm --needed \
@@ -125,10 +123,10 @@ applications/docker:
 		lxc
 	sudo gpasswd -a $(USER) docker
 
-applications/dwm: 
-	git clone https://git.suckless.org/dwm 
-	cp config.h dwm/config.h
-	cd dwm/ && sudo make clean install
+applications/xmonad: ~/.xmonad/xmonad.hs
+	sudo pacman -S --noconfirm --needed \
+		xmonad \
+		xmonad-contrib
 
 # Core
 #
