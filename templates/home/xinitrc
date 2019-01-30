@@ -1,6 +1,12 @@
 #!/bin/sh
 
-setxkbmap -option compose:rctrl -layout 'us(mac)'
+#jif test -e /usr/bin/xmodmap; then
+#j  if test -e .Xmodmap; then
+#j    xmodmap .Xmodmap
+#j  fi
+#jfi
+
+setxkbmap -option 'ctrl:swap_rwin_rctl'
 
 xrdb -load ~/.Xresources
 

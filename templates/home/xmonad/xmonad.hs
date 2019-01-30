@@ -46,25 +46,22 @@ myTerminal      = "alacritty"
 myFocusFollowsMouse = False
 myClickJustFocuses = False
 
-myModMask       = mod1Mask -- or mod4Mask for super
+myModMask       = mod4Mask -- or mod4Mask for super
 myWorkspaces    = ["web","a","b","c","long","mx","sfx"]
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((0, xK_Print), (spawn "scrot"))
     , ((mod4Mask, xK_a), (spawn myTerminal))
+    , ((mod4Mask, xK_b), (spawn "firefox-nightly"))
+    , ((mod4Mask, xK_s), (spawn "alacritty -e pulsemixer"))
     , ((mod4Mask, xK_d), (spawn "launcher"))
     , ((mod4Mask, xK_c), (spawn "xterm"))
     , ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
-    , ((mod4Mask, xK_t), (spawn "xterm -e /bin/bash -i"))
-    , ((modm, xK_Print), (spawn "scrot -s"))
-    --, ((mod4Mask, xK_l), (spawn "physlock -dms"))
-    , ((mod4Mask, xK_l), (spawn "slock"))
-    --, ((0, xF86XK_MonBrightnessDown), (spawn "xbacklight - 10 &"))
-    --, ((0, xF86XK_MonBrightnessUp), (spawn "xbacklight + 10 &"))
-    , ((controlMask .|. mod1Mask, xK_Right), nextWS)
-    , ((controlMask .|. mod1Mask, xK_Left), prevWS)
-    , ((controlMask .|. mod1Mask .|. shiftMask, xK_Right), shiftToNext >> nextWS)
-    , ((controlMask .|. mod1Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
+    , ((mod4Mask .|. shiftMask, xK_l), (spawn "slock"))
+    , ((controlMask .|. mod4Mask, xK_Right), nextWS)
+    , ((controlMask .|. mod4Mask, xK_Left), prevWS)
+    , ((controlMask .|. mod4Mask .|. shiftMask, xK_Right), shiftToNext >> nextWS)
+    , ((controlMask .|. mod4Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
     ] 
 
 myLayout = tiled ||| (Mirror tiled) ||| Full ||| PiP
