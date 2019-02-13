@@ -6,7 +6,8 @@
 #j  fi
 #jfi
 
-setxkbmap -option 'ctrl:swap_rwin_rctl'
+#setxkbmap -option 'ctrl:swap_rwin_rctl' -layout 'us(mac)'
+setxkbmap -option 'caps:super' -layout 'us(mac)'
 
 xrdb -load ~/.Xresources
 
