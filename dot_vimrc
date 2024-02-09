@@ -1,0 +1,20 @@
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set noshowmatch
+set hidden
+set noerrorbells
+set linebreak
+
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+
+let mapleader = " "
+nmap <leader>q :q<cr>

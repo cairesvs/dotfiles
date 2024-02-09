@@ -1,0 +1,89 @@
+syntax on
+set hlsearch
+set smartcase
+set ic
+set incsearch
+set history=700
+set autoread
+set nobackup
+set nowb
+set noswapfile
+set tabstop=4
+set shiftwidth=4
+set winminheight=0
+set t_Co=256
+set laststatus=2
+set ruler
+set showmode
+set mouse=a
+set commentary
+set surround
+set ideajoin
+set multiple-cursors
+set highlightedyank
+set quickscope
+
+set scrolloff=3         " 3 lines above/below cursor when scrolling
+
+" Integrate with system clipboard
+set clipboard=unnamedplus,unnamed
+
+let mapleader = " "
+
+nmap <leader>q :q<cr>
+nmap <leader>v :vs<cr>
+map <Leader>,   :source ~/.ideavimrc<CR>
+map <C-h> <Action>(PreviousTab)
+map <C-l> <Action>(NextTab)
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
+
+map <leader>h   :nohlsearch<cr>
+map <Leader>r   <Action>(ChooseRunConfiguration)
+map <Leader>R   <Action>(RenameElement)
+map <Leader>t   <Action>(SearchEverywhere)
+map <Leader>u   <Action>(GotoSuperMethod)
+map <Leader>i   <Action>(GotoImplementation)
+map <Leader>o   <Action>(ManageRecentProjects)
+map <Leader>p   <Action>(GotoAction)
+map <Leader>P   <Action>(TogglePresentationMode)
+map <Leader>A   <Action>(Annotate)
+map <Leader>s   <Action>(FileStructurePopup)
+map <Leader>S   <Action>(ShowSolutionPropertiesAction)
+map <Leader>d   <Action>(ChooseDebugConfiguration)
+map <Leader>F   <Action>(FindInPath)
+map <Leader>G   <Action>(Github.Open.In.Browser)
+map <Leader>rr  <Action>(Run)
+map <Leader>dd  <Action>(Debug)
+map <Leader>\   <Action>(Refactorings.QuickListPopupAction)
+
+
+nmap <Tab>      <Action>(ShowErrorDescription)
+map <Leader>b   <Action>(ToggleLineBreakpoint)
+map <leader>si :action ShowIntentionActions<cr>
+
+map <C-j> <Action>(ResizeToolWindowDown)
+map <C-k> <Action>(ResizeToolWindowUp)
+
+map <Leader>wr <Action>(ActivateRunToolWindow)
+map <Leader>wd <Action>(ActivateDebugToolWindow)
+map <Leader>ww <Action>(HideAllWindows)
+
+map <Leader>cv <Action>(IntroduceVariable)
+map <Leader>ci <Action>(Inline)
+map <Leader>cf <Action>(IntroduceField)
+
+nmap gu <Action>(ShowUsages)
+nmap <Leader>ff <Action>(ReformatCode)
+nmap <Leader>fi <Action>(OptimizeImports)
+map gd   <Action>(GotoDeclaration)
+
+nmap gcc <Action>(CommentByLineComment)
+vmap gcc <Action>(CommentByLineComment)
+
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
