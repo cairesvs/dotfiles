@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+yabai -m rule --add app="^Karabiner-Elements$" sticky=on layer=above manage=off
+yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
+
+
 # global settings
 yabai -m config mouse_follows_focus          on
 yabai -m config window_placement             second_child
@@ -30,19 +35,20 @@ yabai -m rule --add app="PyCharm.*" space=^2
 yabai -m rule --add app="PyCharm.*" title="Preferences" space=^2 manage=off
 
 # space 3: web work
+yabai -m space 3 --layout stack
 yabai -m rule --add app="Google Chrome" space=^3
 yabai -m rule --add app="Notion" space=^3
 yabai -m rule --add app="Excel" space=^3
 yabai -m rule --add app="Slack" space=^3
 
 # space 4: personal communication
+yabai -m space 4 --layout stack
 yabai -m rule --add app="Safari" space=^4
 yabai -m rule --add app="Telegram" space=^4
 
 # space 5: stack
 yabai -m space 5 --layout stack
 yabai -m rule --add app="DataGrip" space=^5
-
 
 # things which create floating children
 yabai -m rule --add title="JetBrains Toolbox" manage=off mouse_follows_focus=off

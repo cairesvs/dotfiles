@@ -25,3 +25,11 @@ alt + ctrl - h : yabai -m window --warp west
 alt + ctrl - j : yabai -m window --warp south
 alt + ctrl - k : yabai -m window --warp north
 alt + ctrl - l : yabai -m window --warp east
+
+meh - 4 : yabai -m space --mirror y-axis
+
+# cycle all windows on space backwards by coordinate
+meh - q : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
+
+# cycle all windows on space backwards by coordinate
+meh - w : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
