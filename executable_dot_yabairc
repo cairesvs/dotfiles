@@ -35,7 +35,6 @@ yabai -m rule --add app="PyCharm.*" space=^2
 yabai -m rule --add app="PyCharm.*" title="Preferences" space=^2 manage=off
 
 # space 3: web work
-yabai -m space 3 --layout stack
 yabai -m rule --add app="Google Chrome" space=^3
 yabai -m rule --add app="Notion" space=^3
 yabai -m rule --add app="Excel" space=^3
