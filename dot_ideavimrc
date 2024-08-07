@@ -1,5 +1,7 @@
 syntax on
 set hlsearch
+set relativenumber
+set number relativenumber
 set smartcase
 set ic
 set incsearch
@@ -30,7 +32,11 @@ set clipboard=unnamedplus,unnamed
 
 let mapleader = " "
 
+imap <PageUp> <Space>
+imap <PageDown> <Space>
+
 nmap <leader>q :q<cr>
+nmap <leader>Q :qa<cr>
 nmap <leader>v :vs<cr>
 map <Leader>,   :source ~/.ideavimrc<CR>
 map <C-h> <Action>(PreviousTab)
@@ -42,6 +48,7 @@ map <leader>h   :nohlsearch<cr>
 map <Leader>r   <Action>(ChooseRunConfiguration)
 map <Leader>R   <Action>(RenameElement)
 map <Leader>t   <Action>(SearchEverywhere)
+map <Leader>T   <Action>(ActivateTerminalToolWindow)
 map <Leader>u   <Action>(GotoSuperMethod)
 map <Leader>i   <Action>(GotoImplementation)
 map <Leader>o   <Action>(ManageRecentProjects)
@@ -57,10 +64,9 @@ map <Leader>rr  <Action>(Run)
 map <Leader>dd  <Action>(Debug)
 map <Leader>\   <Action>(Refactorings.QuickListPopupAction)
 
-
 nmap <Tab>      <Action>(ShowErrorDescription)
 map <Leader>b   <Action>(ToggleLineBreakpoint)
-map <leader>si :action ShowIntentionActions<cr>
+map <leader>si  :action ShowIntentionActions<cr>
 
 map <C-j> <Action>(ResizeToolWindowDown)
 map <C-k> <Action>(ResizeToolWindowUp)
@@ -83,7 +89,8 @@ vmap gcc <Action>(CommentByLineComment)
 
 nmap <C-n> <Plug>NextWholeOccurrence
 xmap <C-n> <Plug>NextWholeOccurrence
-nmap g<C-n> <Plug>NextOccurrence
+nap g<C-n> <Plug>NextOccurrence
 xmap g<C-n> <Plug>NextOccurrence
 nmap <C-p> <Plug>RemoveOccurrence
 xmap <C-p> <Plug>RemoveOccurrence
+

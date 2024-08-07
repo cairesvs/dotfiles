@@ -18,3 +18,4 @@ set undofile
 
 let mapleader = " "
 nmap <leader>q :q<cr>
+nmap <leader>w :w<cr>
