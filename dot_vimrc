@@ -16,6 +16,28 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 
+set t_Co=256
+set background=dark
+set updatetime=500
+
 let mapleader = " "
 nmap <leader>q :q<cr>
+nmap <leader>Q :qa<cr>
 nmap <leader>w :w<cr>
+nmap <leader>v :vsp<cr>
+nmap <leader>s :sp<cr>
+nmap <leader>h :nohl<cr>
+
+
+" Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+
+" Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+nnoremap <Leader>,   :e ~/.vimrc<CR>:source ~/.vimrc<CR>
