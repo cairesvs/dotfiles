@@ -36,7 +36,8 @@ hs.hotkey.bind({'command'}, 'escape', function ()
   else
     local space = spaces.activeSpaceOnScreen()
     local mainScreen = hs.screen.mainScreen()
-    if alacritty == nil and hs.application.launchOrFocusByBundleID(BUNDLE_ID) then
+    -- if alacritty == nil and hs.application.launchOrFocusByBundleID(BUNDLE_ID) then
+    if alacritty == nil and hs.application.launchOrFocus('/Users/caires/Applications/Home Manager Apps/Alacritty.app') then
       local appWatcher = nil
       print('create app watcher')
       appWatcher = hs.application.watcher.new(function(name, event, app)
