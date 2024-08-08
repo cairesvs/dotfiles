@@ -1,5 +1,5 @@
 {
-  description = "Example kickstart Nix on macOS environment.";
+  description = "Kickstart Nix on macOS environment.";
 
   inputs = {
     darwin.inputs.nixpkgs.follows = "nixpkgs";
