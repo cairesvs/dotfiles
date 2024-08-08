@@ -10,6 +10,7 @@
         just
         lazygit
         ripgrep
+        starship
         yq
         zellij
         zoxide
