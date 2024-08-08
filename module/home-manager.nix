@@ -7,6 +7,7 @@
         fzf
         git
         jq
+        just
         lazygit
         ripgrep
         yq
@@ -34,6 +35,14 @@
             # force fzf tab to work (https://discourse.nixos.org/t/darwin-home-manager-zsh-fzf-and-zsh-fzf-tab/33943)
             source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         '';
+        shellAliases = {
+            cd = "z";
+            grep = "rg";
+            dr = "docker container run --interactive --rm --tty";
+            lg = "lazygit";
+            nb = "nix build --json --no-link --print-build-logs";
+            wt = "git worktree";
+        };
         oh-my-zsh = {
             enable = true;
             plugins = ["git" "z"];
