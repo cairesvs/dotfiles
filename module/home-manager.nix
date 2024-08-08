@@ -1,6 +1,7 @@
 {pkgs, ...}: {
-# add home-manager user settings here
+    # add home-manager user settings here
     home.packages = with pkgs; [
+        alacritty
         awscli2
         eza
         fzf
@@ -11,6 +12,64 @@
         yq
         zellij
         zoxide
+        zsh-fzf-tab
     ];
     home.stateVersion = "23.11";
+
+    programs.direnv = {
+        enable = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
+    };
+
+    programs.fzf = {
+        enable = true;
+        enableZshIntegration = true;
+    };
+
+    programs.zsh = {
+        enable = true;
+        enableCompletion = true;
+        initExtra = ''
+            # force fzf tab to work (https://discourse.nixos.org/t/darwin-home-manager-zsh-fzf-and-zsh-fzf-tab/33943)
+            source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+        '';
+        oh-my-zsh = {
+            enable = true;
+            plugins = ["git" "z"];
+            theme = "robbyrussell";
+        };
+    };
+
+    programs.starship = {
+        enable = true;
+        enableZshIntegration = true;
+        settings = {
+            add_newline = false;
+        };
+    };
+
+    programs.alacritty = {
+        enable = true;
+        settings = {
+            env = {
+                "TERM" = "xterm-256color";
+            };
+            window = {
+                padding.x = 10;
+                padding.y = 10;
+                decorations = "buttonless";
+                opacity = 0.8;
+                blur = true;
+            };
+            font = {
+                size = 10.0;
+                normal.family = "JetBrainsMono Nerd Font";
+            };
+            shell = {
+                program = "/bin/zsh";
+                args = ["-l" "-c" "zellij"];
+            };
+        };
+    };
 }
