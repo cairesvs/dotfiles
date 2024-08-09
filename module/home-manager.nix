@@ -31,6 +31,14 @@
       };
     };
 
+    home.sessionVariables = {
+        EDITOR = "vim";
+        LANG = "en_US.UTF-8";
+        LC_ALL = "en_US.UTF-8";
+        LC_CTYPE = "en_US.UTF-8";
+        PATH = "$PATH:$GOPATH/bin";
+    };
+
     programs.direnv = {
         enable = true;
         enableZshIntegration = true;
@@ -50,8 +58,6 @@
             source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         '';
         shellAliases = {
-            cd = "z";
-            grep = "rg";
             dr = "docker container run --interactive --rm --tty";
             lg = "lazygit";
             nb = "nix build --json --no-link --print-build-logs";
