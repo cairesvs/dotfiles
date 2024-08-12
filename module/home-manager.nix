@@ -58,6 +58,7 @@
             source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         '';
         shellAliases = {
+            worklog = "vim ~/Documents/worklog.md";
             dr = "docker container run --interactive --rm --tty";
             lg = "lazygit";
             nb = "nix build --json --no-link --print-build-logs";
