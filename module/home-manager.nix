@@ -9,6 +9,7 @@
         git
         jq
         just
+        kitty
         lazygit
         ripgrep
         starship
@@ -76,6 +77,29 @@
         enableZshIntegration = true;
         settings = {
             add_newline = false;
+        };
+    };
+
+    programs.kitty = {
+        enable = true;
+        font = {
+            size = 12.0;
+            name =  "JetBrainsMono Nerd Font";
+        };
+        settings = {
+            scrollback_lines = 10000;
+            enable_audio_bell = false;
+            update_check_interval = 0;
+
+            background_opacity = "0.8";
+            background_blur = "1";
+
+            hide_window_decorations = "titlebar-and-corners";
+            macos_quit_when_last_window_closed = "yes";
+            confirm_os_window_close = 0;
+            remember_window_size = "yes";
+
+            tab_bar_style = "powerline";
         };
     };
 

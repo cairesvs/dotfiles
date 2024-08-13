@@ -1,60 +1,58 @@
 local spaces = require("hs.spaces") -- https://github.com/asmagill/hs._asm.spaces
 
--- Switch alacritty
-hs.hotkey.bind({'command'}, 'escape', function ()
-  local BUNDLE_ID = 'org.alacritty' -- more accurate to avoid mismatching on browser titles
-  function moveWindow(alacritty, space, mainScreen)
-    -- move to main space
+-- Switch kitty
+hs.hotkey.bind({'command'}, 'escape', function () -- change your own hotkey combo here, available keys could be found here:https://www.hammerspoon.org/docs/hs.hotkey.html#bind
+  local BUNDLE_ID = 'net.kovidgoyal.kitty' -- more accurate to avoid mismatching on browser titles
+
+  function getMainWindow(app)
+    -- get main window from app
     local win = nil
     while win == nil do
-      win = alacritty:mainWindow()
+      win = app:mainWindow()
     end
-    print("win="..tostring(win))
-    print("space="..tostring(space))
-    print("screen="..tostring(win:screen()))
-    print("mainScr="..tostring(mainScreen))
+    return win
+  end
+
+  function moveWindow(kitty, space, mainScreen)
+    -- move to main space
+    local win = getMainWindow(kitty)
     if win:isFullScreen() then
-      hs.eventtap.keyStroke('cmd', 'return', 0, alacritty)
+      hs.eventtap.keyStroke('fn', 'f', 0, kitty)
     end
     winFrame = win:frame()
     scrFrame = mainScreen:fullFrame()
     winFrame.w = scrFrame.w
     winFrame.y = scrFrame.y
     winFrame.x = scrFrame.x
-    print("winFrame="..tostring(winFrame))
     win:setFrame(winFrame, 0)
-    print("win:frame=" .. tostring(win:frame()))
     spaces.moveWindowToSpace(win, space)
     if win:isFullScreen() then
-      hs.eventtap.keyStroke('cmd', 'return', 0, alacritty)
+      hs.eventtap.keyStroke('fn', 'f', 0, kitty)
     end
     win:focus()
   end
-  local alacritty = hs.application.get(BUNDLE_ID)
-  if alacritty ~= nil and alacritty:isFrontmost() then
-    alacritty:hide()
+
+  local kitty = hs.application.get(BUNDLE_ID)
+  if kitty ~= nil and kitty:isFrontmost() then
+    kitty:hide()
   else
     local space = spaces.activeSpaceOnScreen()
     local mainScreen = hs.screen.mainScreen()
-    -- if alacritty == nil and hs.application.launchOrFocusByBundleID(BUNDLE_ID) then
-    if alacritty == nil and hs.application.launchOrFocus('/Users/caires/Applications/Home Manager Apps/Alacritty.app') then
+    if kitty == nil and hs.application.launchOrFocusByBundleID(BUNDLE_ID) then
       local appWatcher = nil
-      print('create app watcher')
       appWatcher = hs.application.watcher.new(function(name, event, app)
-        print('name='..name)
-        print('event='..event)
         if event == hs.application.watcher.launched and app:bundleID() == BUNDLE_ID then
+          getMainWindow(app):move(hs.geometry({x=0,y=0,w=1,h=0.6})) -- move kitty window on top, you could set the window percentage here
           app:hide()
           moveWindow(app, space, mainScreen)
-          print("stop watcher")
           appWatcher:stop()
         end
       end)
-      print('start watcher')
       appWatcher:start()
     end
-    if alacritty ~= nil then
-      moveWindow(alacritty, space, mainScreen)
+    if kitty ~= nil then
+      moveWindow(kitty, space, mainScreen)
     end
   end
 end)
+
