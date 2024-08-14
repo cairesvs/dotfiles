@@ -1,7 +1,6 @@
 {pkgs, lib, ...}: {
     # add home-manager user settings here
     home.packages = with pkgs; [
-        alacritty
         awscli2
         devenv
         eza
@@ -11,6 +10,7 @@
         just
         kitty
         lazygit
+		micro
         ripgrep
         starship
         yq
@@ -25,15 +25,15 @@
     
     # hammerspoon
     home.file = {
-      hammerspoon = lib.mkIf pkgs.stdenvNoCC.isDarwin {
-        source = ./../dot_hammerspoon;
-        target = ".hammerspoon";
-        recursive = true;
-      };
+      #hammerspoon = lib.mkIf pkgs.stdenvNoCC.isDarwin {
+      #  source = ./../dot_hammerspoon;
+      #  target = ".hammerspoon";
+      #  recursive = true;
+      #};
     };
 
     home.sessionVariables = {
-        EDITOR = "vim";
+        EDITOR = "micro";
         LANG = "en_US.UTF-8";
         LC_ALL = "en_US.UTF-8";
         LC_CTYPE = "en_US.UTF-8";
@@ -100,30 +100,6 @@
             remember_window_size = "yes";
 
             tab_bar_style = "powerline";
-        };
-    };
-
-    programs.alacritty = {
-        enable = true;
-        settings = {
-            env = {
-                "TERM" = "xterm-256color";
-            };
-            window = {
-                padding.x = 10;
-                padding.y = 10;
-                decorations = "buttonless";
-                opacity = 0.8;
-                blur = true;
-            };
-            font = {
-                size = 12.0;
-                normal.family = "JetBrainsMono Nerd Font";
-            };
-            shell = {
-                program = "/bin/zsh";
-                args = ["-l" "-c" "zellij"];
-            };
         };
     };
 }

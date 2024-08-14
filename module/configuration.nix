@@ -28,9 +28,9 @@
 
       casks = [
           #"1password"
-          "firefox"
+          #"firefox"
           #"hammerspoon"
-          "obsidian"
+          #"obsidian"
       ];
   };
 
