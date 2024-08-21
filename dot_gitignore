@@ -33,6 +33,7 @@ dataSources.xml
 # my personal stuff
 .aws/
 .caires/
+
 # I need to ignore this only for code gaia purposes because we don't commit these things
 .envrc
 Taskfile.yml
