@@ -29,3 +29,14 @@ dataSources.xml
 
 # Should usually be committed, but I use rider with non-rider projects..
 .idea/**/indexLayout.xml
+
+# my personal stuff
+.aws/
+.caires/
+# I need to ignore this only for code gaia purposes because we don't commit these things
+.envrc
+Taskfile.yml
+devbox.json
+devbox.lock
+docker-compose-metabase.yml
+env-file
