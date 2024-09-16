@@ -13,8 +13,6 @@ set expandtab
 
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
-set undofile
 
 set t_Co=256
 set background=dark

@@ -1,7 +1,6 @@
 syntax on
 set hlsearch
-set relativenumber
-set number relativenumber
+set number 
 set smartcase
 set ic
 set incsearch

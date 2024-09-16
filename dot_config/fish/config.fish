@@ -140,4 +140,3 @@ alias dr "docker container run --interactive --rm --tty";
 alias lg "lazygit";
 alias nb "nix build --json --no-link --print-build-logs";
 alias wt "git worktree";
-alias vim  "nvim"
