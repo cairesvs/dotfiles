@@ -54,9 +54,10 @@ const rules: KarabinerRules[] = [
       g: app("Google Chrome"),
       w: app("Safari"),
       s: app("Slack"),
-      e: app("Superhuman"),
       n: app("Notion"),
-      t: app("ITerm2"),
+      t: app("iTerm2"),
+      p: app("PyCharm Professional Edition"),
+      d: app("DataGrip"),
       // "M"arkdown (Reflect.app)
       m: app("Reflect"),
       r: app("Reflect"),
@@ -252,9 +253,6 @@ const rules: KarabinerRules[] = [
     r: {
       c: open("raycast://extensions/thomas/color-picker/pick-color"),
       n: open("raycast://script-commands/dismiss-notifications"),
-      l: open(
-        "raycast://extensions/stellate/mxstbr-commands/create-mxs-is-shortlink"
-      ),
       e: open(
         "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
       ),
