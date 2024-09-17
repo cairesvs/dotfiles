@@ -55,7 +55,7 @@ const rules: KarabinerRules[] = [
       w: app("Safari"),
       s: app("Slack"),
       n: app("Notion"),
-      t: app("iTerm2"),
+      t: app("iTerm"),
       p: app("PyCharm Professional Edition"),
       d: app("DataGrip"),
       // "M"arkdown (Reflect.app)
