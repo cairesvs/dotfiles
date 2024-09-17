@@ -27,12 +27,14 @@ brew "python-cryptography", link: false
 brew "ripgrep"
 brew "yq"
 
-cask "1password"
+#cask "1password"
 cask "kitty"
 cask "cleanshot"
 cask "font-jetbrains-mono-nerd-font"
-cask "hammerspoon"
+#cask "hammerspoon"
 cask "hiddenbar"
+cask "karabiner-elements"
+cask "raycast"
 cask "stats"
 cask "yubico-yubikey-manager"
 
