@@ -58,6 +58,7 @@ const rules: KarabinerRules[] = [
       t: app("iTerm"),
       p: app("PyCharm Professional Edition"),
       d: app("DataGrip"),
+      j: app("WebStorm"),
       // "M"arkdown (Reflect.app)
       m: app("Reflect"),
       r: app("Reflect"),
@@ -256,11 +257,14 @@ const rules: KarabinerRules[] = [
       e: open(
         "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
       ),
-      p: open("raycast://extensions/raycast/raycast/confetti"),
+      // p: open("raycast://extensions/raycast/raycast/confetti"),
       a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
       s: open("raycast://extensions/peduarte/silent-mention/index"),
       h: open(
         "raycast://extensions/raycast/clipboard-history/clipboard-history"
+      ),
+      p: open(
+          "raycast://extensions/Aayush9029/cleanshotx/capture-area?arguments=%7B%22action%22%3A%22annotate%22%7D"
       ),
       1: open(
         "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
