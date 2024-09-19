@@ -35,6 +35,8 @@ cask "font-jetbrains-mono-nerd-font"
 cask "hiddenbar"
 cask "karabiner-elements"
 cask "raycast"
+#cask "rectangle"
+cask "rectangle-pro"
 cask "stats"
 cask "yubico-yubikey-manager"
 
