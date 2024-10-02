@@ -8,7 +8,6 @@ projectSettingsUpdater.xml
 riderMarkupCache.xml
 *.nrproj
 *.crproj
-*/**/bin
 */**/obj
 .DS_Store
 .keep
@@ -26,6 +25,7 @@ dataSources.xml
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/
 
 # Should usually be committed, but I use rider with non-rider projects..
 .idea/**/indexLayout.xml

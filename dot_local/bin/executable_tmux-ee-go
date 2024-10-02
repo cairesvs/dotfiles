@@ -1,0 +1,25 @@
+#!/bin/bash
+
+tmux has-session -t ee-session 2>/dev/null
+
+if [ $? != 0 ]; then
+    # Create a new tmux session named 'ee-session'
+    tmux new-session -d -s ee-session
+
+    tmux send-keys -t ee-session:1 'cd ~/work/atomic-engine-2' C-m
+    sleep 1
+    tmux rename-window -t ee-session:1 -n 'ae2'
+
+    tmux new-window -t ee-session:2 -n 'tm'
+    sleep 1
+    tmux send-keys -t ee-session:2 'cd ~/work/tenant-management/' C-m
+
+    tmux new-window -t ee-session:3 -n 'dev_tools:services'
+    sleep 1
+    tmux send-keys -t ee-session:3 'cd ~/work/dev_tools/devbox/ && devbox services up' C-m
+fi
+
+# Attach to the session
+tmux attach -t ee-session
+
+tmux select-window -t 1
