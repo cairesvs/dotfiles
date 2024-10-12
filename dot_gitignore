@@ -35,9 +35,5 @@ dataSources.xml
 .caires/
 
 # I need to ignore this only for code gaia purposes because we don't commit these things
-.envrc
-Taskfile.yml
-devbox.json
-devbox.lock
 docker-compose-metabase.yml
 env-file

@@ -1,0 +1,17 @@
+{
+  "packages": [
+    "nodejs@18",
+    "gh@latest",
+    "direnv@latest",
+    "go-task@latest"
+  ],
+  "env": {
+    "DEVBOX_COREPACK_ENABLED": "true"
+  },
+  "shell": {
+    "init_hook": [
+      ""
+    ],
+    "scripts": {}
+  }
+}

@@ -1,0 +1,13 @@
+version: 3
+
+tasks:
+    build:
+        desc: "Build karabiner.json based on rules"
+        cmds:
+          - yarn run build
+    apply:
+        desc: "Apply the newly created karabiner.json to system"
+        deps: [build]
+        cmds:
+          - cp karabiner.json ../dot_config/karabiner/karabiner.json
+          - cd ../ && chezmoi -v apply
