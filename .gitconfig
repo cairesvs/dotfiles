@@ -1,0 +1,8 @@
+[user]
+	name = caires
+	email = cairesvs@gmail.com
+[push]
+	autoSetupRemote = true
+[core]
+	autocrlf = input
+	excludesFile = ~/.gitignore

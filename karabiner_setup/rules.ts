@@ -1,4 +1,5 @@
 import fs from "fs";
+
 import { KarabinerRules } from "./types";
 import { createHyperSubLayers, app, open, rectangle, shell } from "./utils";
 
@@ -179,6 +180,7 @@ const rules: KarabinerRules[] = [
       },
       semicolon: {
         to: [
+
           {
             key_code: "fastforward",
           },
