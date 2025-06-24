@@ -37,3 +37,8 @@ dataSources.xml
 # I need to ignore this only for code gaia purposes because we don't commit these things
 docker-compose-metabase.yml
 env-file
+
+.cursor/
+docs/
+CLAUDE.md
+http-client.env.json

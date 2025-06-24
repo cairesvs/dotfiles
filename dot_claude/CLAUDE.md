@@ -145,4 +145,5 @@ When you are using /compact, please focus on our conversation, your most recent 
 # Specific Technologies
 
 - @~/.claude/docs/python.md
+- @~/.claude/docs/django.md
 - @~/.claude/docs/source-control.md
