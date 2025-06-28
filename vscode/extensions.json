@@ -1,0 +1,23 @@
+{
+    "recommendations": [
+        "github.copilot@1.338.0",
+        "github.copilot-chat@0.27.3",
+        "hashicorp.terraform@2.34.5",
+        "ms-ossdata.vscode-pgsql@1.4.2",
+        "ms-python.debugpy@2025.8.0",
+        "ms-python.python@2025.8.0",
+        "ms-python.vscode-pylance@2025.6.2",
+        "ms-vscode-remote.remote-ssh@0.120.0",
+        "ms-vscode-remote.remote-ssh-edit@0.87.0",
+        "ms-vscode.remote-explorer@0.5.0",
+        "vscodevim.vim@1.30.1",
+        "yardensachs.copy-python-path@1.0.4",
+        "anweber.vscode-httpyac@6.16.7",
+        "charliermarsh.ruff@2025.24.0",
+        "eamodio.gitlens@17.2.1",
+        "github.vscode-github-actions@0.27.2",
+        "vscodevim.vim@1.30.1",
+        "yzhang.markdown-all-in-one@3.6.3"
+    ],
+    "unwantedRecommendations": []
+}

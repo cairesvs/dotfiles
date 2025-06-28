@@ -1,0 +1,117 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Django: Migrate Computed Fields",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "migrate_computed_fields",
+                "--category",
+                "${input:migrateCommand}"
+            ]
+        },
+        {
+            "name": "Django: Runserver",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "0.0.0.0:8003"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Django: Shell",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "shell"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Django: Make Migrations",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "makemigrations",
+                "--name",
+                "${input:migrationName}"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Django: Migrate",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "migrate"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Django: Test",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "test",
+                "-k",
+                "${input:testName}"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Django: Custom Command",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "${input:djangoCommand}"
+            ],
+            "django": true,
+            "justMyCode": true
+        }
+    ],
+    "inputs": [
+        {
+            "id": "djangoCommand",
+            "type": "promptString",
+            "description": "Django command to run"
+        },
+        {
+            "id": "migrationName",
+            "type": "promptString",
+            "description": "Migration name"
+        },
+        {
+            "id": "testName",
+            "type": "promptString",
+            "description": "Test name"
+        },
+        {
+            "id": "migrateCommand",
+            "type": "pickString",
+            "description": "Command to run",
+            "default": "energy",
+            "options": [
+                "energy",
+                "fuel",
+                "water"
+            ]
+        }
+    ],
+}
