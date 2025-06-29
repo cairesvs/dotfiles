@@ -1,4 +1,8 @@
 {
+    "window.commandCenter": 1,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "editor.fontFamily": "Jetbrains Mono",
     "git.autofetch": true,
     "editor.fontSize": 16,
     "workbench.colorTheme": "Default Dark Modern",
@@ -27,10 +31,10 @@
         {
             "before": [
                 "<Leader>",
-                "w"
+                "p"
             ],
             "commands": [
-                "workbench.action.files.save",
+                "workbench.action.quickOpen",
             ]
         },
         {
@@ -58,6 +62,15 @@
             ],
             "commands": [
                 ":vsplit"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "s"
+            ],
+            "commands": [
+                ":split"
             ]
         },
         {
@@ -97,6 +110,32 @@
                 "workbench.action.debug.selectandstart"
             ]
         },
+        {
+            "before": [
+                "<Leader>",
+                "o",
+                "t"
+            ],
+            "commands": [
+                "workbench.action.createTerminalEditor"
+            ]
+        },
+        {
+            "before": [
+                "<C-h>"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
+        },
+        {
+            "before": [
+                "<C-l>"
+            ],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
+        }
     ],
     "github.copilot.enable": {
         "*": false,
