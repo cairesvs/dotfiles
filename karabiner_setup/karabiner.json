@@ -409,10 +409,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a 'iTerm.app'"
+                    "shell_command": "open -a 'Ghostty.app'"
                   }
                 ],
-                "description": "Open -a 'iTerm.app'",
+                "description": "Open -a 'Ghostty.app'",
                 "type": "basic",
                 "from": {
                   "key_code": "t",
@@ -433,109 +433,13 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a 'PyCharm Professional Edition.app'"
+                    "shell_command": "open -a 'Cursor.app'"
                   }
                 ],
-                "description": "Open -a 'PyCharm Professional Edition.app'",
+                "description": "Open -a 'Cursor.app'",
                 "type": "basic",
                 "from": {
-                  "key_code": "p",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "hyper_sublayer_o",
-                    "value": 1
-                  }
-                ]
-              },
-              {
-                "to": [
-                  {
-                    "shell_command": "open -a 'DataGrip.app'"
-                  }
-                ],
-                "description": "Open -a 'DataGrip.app'",
-                "type": "basic",
-                "from": {
-                  "key_code": "d",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "hyper_sublayer_o",
-                    "value": 1
-                  }
-                ]
-              },
-              {
-                "to": [
-                  {
-                    "shell_command": "open -a 'WebStorm.app'"
-                  }
-                ],
-                "description": "Open -a 'WebStorm.app'",
-                "type": "basic",
-                "from": {
-                  "key_code": "j",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "hyper_sublayer_o",
-                    "value": 1
-                  }
-                ]
-              },
-              {
-                "to": [
-                  {
-                    "shell_command": "open -a 'Reflect.app'"
-                  }
-                ],
-                "description": "Open -a 'Reflect.app'",
-                "type": "basic",
-                "from": {
-                  "key_code": "m",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "hyper_sublayer_o",
-                    "value": 1
-                  }
-                ]
-              },
-              {
-                "to": [
-                  {
-                    "shell_command": "open -a 'Reflect.app'"
-                  }
-                ],
-                "description": "Open -a 'Reflect.app'",
-                "type": "basic",
-                "from": {
-                  "key_code": "r",
+                  "key_code": "c",
                   "modifiers": {
                     "optional": [
                       "any"

@@ -56,13 +56,14 @@ const rules: KarabinerRules[] = [
       w: app("Safari"),
       s: app("Slack"),
       n: app("Notion"),
-      t: app("iTerm"),
-      p: app("PyCharm Professional Edition"),
-      d: app("DataGrip"),
-      j: app("WebStorm"),
+      t: app("Ghostty"),
+      c: app("Cursor"),
+      // p: app("PyCharm Professional Edition"),
+      // d: app("DataGrip"),
+      // j: app("WebStorm"),
       // "M"arkdown (Reflect.app)
-      m: app("Reflect"),
-      r: app("Reflect"),
+      // m: app("Reflect"),
+      // r: app("Reflect"),
       f: app("Finder")
     },
 
