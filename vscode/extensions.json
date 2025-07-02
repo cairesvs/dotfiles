@@ -16,7 +16,8 @@
         "charliermarsh.ruff@2025.24.0",
         "eamodio.gitlens@17.2.1",
         "github.vscode-github-actions@0.27.2",
-        "yzhang.markdown-all-in-one@3.6.3"
+        "yzhang.markdown-all-in-one@3.6.3",
+        "quandinh.onehalf-dark"
     ],
     "unwantedRecommendations": []
 }
