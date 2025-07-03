@@ -63,6 +63,8 @@ end
 
 # Add ~/.local/bin
 set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.local/bin" $PATH;
+# Add ~/.npm-global/bin
+set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.npm-global/bin" $PATH;
 
 #-------------------------------------------------------------------------------
 # Prompt
