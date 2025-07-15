@@ -34,7 +34,36 @@ Whenever you build out a new project and specifically start a new Claude.md - yo
 - Design for extensibility and flexibility.
 - Good naming is very important. Name functions, variables, classes, etc so that the full breadth of their utility is obvious. Reusable, generic things should have reusable generic names
 
-# Writing code
+## Naming and Comments
+
+Names MUST tell what code does, not how it's implemented or its history
+NEVER use implementation details in names (e.g., "SchemaValidator", "APIWrapper", "DataParser")
+NEVER use temporal/historical context in names (e.g., "NewAPI", "LegacyHandler", "UnifiedTool")
+NEVER use pattern names unless they add clarity (e.g., prefer "Tool" over "ToolFactory")
+
+Good names tell a story about the domain:
+
+Tool not AbstractToolInterface
+RemoteTool not ProtocolToolWrapper
+Registry not ToolRegistryManager
+execute() not executeToolWithValidation()
+
+Comments must describe what the code does NOW, not:
+
+What it used to do
+How it was refactored
+What framework/library it uses internally
+Why it's better than some previous version
+
+Examples:
+// BAD: This uses schema validation instead of manual checking
+// BAD: Refactored from the old validation system
+// BAD: Wrapper around remote tool protocol
+// GOOD: Executes tools with validated arguments
+If you catch yourself writing "new", "old", "legacy", "wrapper", "unified", or implementation details in names or comments, STOP and find a better name that describes the thing's actual purpose.
+
+
+## Writing code
 
 - CRITICAL: NEVER USE --no-verify WHEN COMMITTING CODE
 - We prefer simple, clean, maintainable solutions over clever or complex ones, even if the latter are more concise or performant. Readability and maintainability are primary concerns.
@@ -42,6 +71,7 @@ Whenever you build out a new project and specifically start a new Claude.md - yo
 - When modifying code, match the style and formatting of surrounding code, even if it differs from standard style guides. Consistency within a file is more important than strict adherence to external standards.
 - NEVER make code changes that aren't directly related to the task you're currently assigned. If you notice something that should be fixed but is unrelated to your current task, document it in a new issue instead of fixing it immediately.
 - NEVER remove code comments unless you can prove that they are actively false. Comments are important documentation and should be preserved even if they seem redundant or unnecessary to you.
+- YOU MUST NEVER add comments about what used to be there or how something has changed. 
 - All code files should start with a brief 2 line comment explaining what the file does. Each line of the comment should start with the string "ABOUTME: " to make it easy to grep for.
 - When writing comments, avoid referring to temporal context about refactors or recent changes. Comments should be evergreen and describe the code as it is, not how it evolved or was recently changed.
 - NEVER implement a mock mode for testing or for any purpose. We always use real data and real APIs, never mock implementations.
@@ -59,13 +89,28 @@ Whenever you build out a new project and specifically start a new Claude.md - yo
 - YOU MUST NEVER refer to temporal context in comments (like "recently refactored" "moved") or code. Comments should be evergreen and describe the code as it is. If you name something "new" or "enhanced" or "improved", you've probably made a mistake and MUST STOP and ask me what to do.
 - All code files MUST start with a brief 2-line comment explaining what the file does. Each line MUST start with "ABOUTME: " to make them easily greppable.
 - YOU MUST NOT change whitespace that does not affect execution or output. Otherwise, use a formatting tool.
+- NEVER SKIP OR EVADE OR DISABLE A PRE-COMMIT HOOK
 
-# Getting help
+## Version Control
+
+- If the project isn't in a git repo, YOU MUST STOP and ask permission to initialize one.
+- YOU MUST STOP and ask how to handle uncommitted changes or untracked files when starting work.  Suggest committing existing work first.
+- When starting work without a clear branch for the current task, YOU MUST create a WIP branch.
+- YOU MUST TRACK All non-trivial changes in git.
+- YOU MUST commit frequently throughout the development process, even if your high-level tasks are not yet done.
+- NEVER SKIP OR EVADE OR DISABLE A PRE-COMMIT HOOK
+
+## Getting help
 
 - ALWAYS ask for clarification rather than making assumptions.
 - If you're having trouble with something, it's ok to stop and ask for help. Especially if it's something your human might be better at.
 
-# Testing
+## Issue tracking
+
+- You MUST use your TodoWrite tool to keep track of what you're doing 
+- You MUST NEVER discard tasks from your TodoWrite todo list without Jesse's explicit approval
+
+## Testing
 
 - Tests MUST cover the functionality being implemented.
 - NEVER ignore the output of the system or the tests - Logs and messages often contain CRITICAL information.
@@ -83,6 +128,8 @@ Whenever you build out a new project and specifically start a new Claude.md - yo
 - YOU MUST NEVER implement mocks in end to end tests. We always use real data and real APIs.
 - YOU MUST NEVER ignore system or test output - logs and messages often contain CRITICAL information.
 - Test output MUST BE PRISTINE TO PASS. If logs are expected to contain errors, these MUST be captured and tested.
+- YOU MUST NEVER write tests that "test" mocked behavior. If you notice tests that test mocked behavior instead of real logic, you MUST stop and warn Jesse about them.
+- YOU MUST NEVER mock the functionality you're trying to test.
 
 ## We practice TDD. That means:
 
@@ -142,7 +189,7 @@ YOU MUST follow this debugging framework for ANY technical issue:
 
 When you are using /compact, please focus on our conversation, your most recent (and most significant) learnings, and what you need to do next. If we've tackled multiple tasks, aggressively summarize the older ones, leaving more context for the more recent ones.
 
-# Specific Technologies
+### Specific Technologies
 
 - @~/.claude/docs/python.md
 - @~/.claude/docs/django.md
