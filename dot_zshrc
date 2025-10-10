@@ -103,12 +103,10 @@ source $ZSH/oh-my-zsh.sh
 # Created by `pipx` on 2023-05-21 09:43:00
 export PATH="$PATH:/Users/caires/.local/bin"
 export PATH=$PATH:$HOME/.gem/bin
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(devbox global shellenv)"
+export PATH=$PATH:/Users/caires/.npm-global/bin
 eval "$(direnv hook zsh)"
 alias lg=lazygit
+alias n=nvim
 
-export PATH=~/.npm-global/bin:$PATH
 export EDITOR='vim'
+eval "$(zoxide init zsh)"

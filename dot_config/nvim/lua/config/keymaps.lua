@@ -10,3 +10,5 @@ map("n", "<leader>w", ":w<cr>", { desc = "Save" })
 
 -- Clear search highlighting
 map("n", "<leader>h", ":nohl<cr>", { desc = "Clear search highlight" })
+
+map("n", "<leader>cp", "<cmd>let @*=@%<cr>:let @+=@%<cr>")
