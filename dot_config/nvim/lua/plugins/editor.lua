@@ -1,12 +1,32 @@
 return {
-  -- open file in GitHub
   {
-    "linrongbin16/gitlinker.nvim",
-    cmd = "GitLink",
+    "echasnovski/mini.pick",
+    version = false,
+    config = function()
+      require("mini.pick").setup()
+    end,
     keys = {
-      { "<leader>gH", "<cmd>GitLink<cr>", mode = { "n", "v" }, desc = "Copy GitHub link" },
-      { "<leader>gO", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open in GitHub" },
+      {
+        "<leader>ff",
+        function()
+          MiniPick.builtin.files()
+        end,
+        desc = "Find files",
+      },
+      {
+        "<leader>fg",
+        function()
+          MiniPick.builtin.grep_live()
+        end,
+        desc = "Find text",
+      },
+      {
+        "<leader>fb",
+        function()
+          MiniPick.builtin.buffers()
+        end,
+        desc = "Find buffers",
+      },
     },
-    opts = {},
   },
 }
